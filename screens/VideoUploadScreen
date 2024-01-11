@@ -1,0 +1,62 @@
+// VideoUploadScreen.js
+
+import React, { useState } from 'react';
+import { View, Button, Image, StyleSheet } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
+
+const VideoUploadScreen = () => {
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  const pickVideo = () => {
+    const options = {
+      mediaType: 'video',
+      videoQuality: 'high',
+      durationLimit: 60, // Limit video duration to 60 seconds
+    };
+
+    ImagePicker.launchImageLibrary(options, (response) => {
+      if (!response.didCancel && !response.error) {
+        setSelectedVideo(response.uri);
+      }
+    });
+  };
+
+  const uploadVideo = async () => {
+    if (!selectedVideo) {
+      console.error('Please select a video');
+      return;
+    }
+
+    // Implement your upload logic here using the selectedVideo URI
+
+    // For demonstration purposes, log the selected video URI
+    console.log('Selected Video URI:', selectedVideo);
+  };
+
+  return (
+    <View style={styles.container}>
+      {selectedVideo && (
+        <Image source={{ uri: selectedVideo }} style={styles.video} />
+      )}
+      <Button title="Pick a video" onPress={pickVideo} />
+      {selectedVideo && (
+        <Button title="Upload Video" onPress={uploadVideo} />
+      )}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  video: {
+    width: 300,
+    height: 200,
+    marginVertical: 20,
+  },
+});
+
+export default VideoUploadScreen;

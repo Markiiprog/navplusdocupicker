@@ -1,12 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+// import VideoUploadScreen from './screens/VideoUploadScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Try from './screens/Try';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen name="try" component={Try} />
+    </Stack.Navigator>
   );
 }
 
