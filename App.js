@@ -3,14 +3,20 @@ import { StyleSheet, Text, View } from 'react-native';
 // import VideoUploadScreen from './screens/VideoUploadScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Try from './screens/Try';
+import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="try" component={Try} />
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="try" component={Try} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    // <View>
+    //   <Text>HAays</Text>
+    // </View>
   );
 }
 
